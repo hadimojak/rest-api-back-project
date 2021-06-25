@@ -149,7 +149,7 @@ exports.deletePost = (req, res, next) => {
       return Post.findByIdAndRemove(postId);
     })
     .then(result => {
-      console.log(result);
+      // console.log(result);
       res.status(200).json({ message: 'Deleted post.' });
     })
     .catch(err => {
