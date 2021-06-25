@@ -61,11 +61,11 @@ app.use((error, req, res, next) => {
 
 mongoose
   .connect(
-    "mongodb+srv://mojak:0015166031@nodejs-store.tbcbg.mongodb.net/shop?retryWrites=true&w=majority",
+    "mongodb+srv://mojak:0015166031@nodejs-store.tbcbg.mongodb.net/messages?retryWrites=true&w=majority",
     { useNewUrlParser: true, useUnifiedTopology: true }
   )
   .then((result) => {
-    console.log("connected");
+    console.log('connected')
     app.listen(8080);
   })
   .catch((err) => console.log(err));
