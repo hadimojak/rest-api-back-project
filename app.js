@@ -15,7 +15,7 @@ const fileStorage = multer.diskStorage({
     cb(null, "images");
   },
   filename: (req, file, cb) => {
-    cb(null, new Date().toISOString() + "-" + file.originalname);
+    cb(null, Date.now() + "-" + file.originalname);
   },
 });
 
@@ -32,7 +32,7 @@ const fileFilter = (req, file, cb) => {
 };
 
 // app.use(bodyParser.urlencoded()); // x-www-form-urlencoded <form>
-app.use(bodyParser.json()); // application/json
+app.use(express.json()); // application/json
 app.use(
   multer({ storage: fileStorage, fileFilter: fileFilter }).single("image")
 );
@@ -67,7 +67,7 @@ mongoose
   .then((result) => {
     console.log("connected");
     const server = app.listen(8080);
-    const io = require("socket.io")(server);
+    const io = require("./socket").init(server);
     io.on("connection", (socket) => {
       console.log("Client connected");
     });
